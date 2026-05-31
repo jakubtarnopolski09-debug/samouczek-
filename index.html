@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samouczek html5</title>
+    <style>
+        body {
+            background-color: #f4ecd8;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4a3525;
+            border-bottom: 3px double #d4af37;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } 
+
+        ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            gap: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            font-family: Georgia, serif;
+        }
+
+        ul li a {
+            display: block;
+            background-color: #d4af37;
+            color: #2b1d11;
+            padding: 8px 15px;
+            border: 1px solid #4a3525;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            background-color: #2b1d11;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+
+        #kontener-glowny {
+            display: flex;
+            flex: 1;
+        }
+
+        #srodkowy-div {
+            width: 50%;
+            background-color: #faf4e8;
+            padding: 30px;
+            box-sizing: border-box;
+            border-left: 1px solid #4a3525;
+            border-right: 1px solid #4a3525;
+        }
+
+        .boczna-kolumna {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed #4a3525;
+            margin: 10px;
+            background-color: #ebdcb9;
+            color: #4a3525;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #4a3525;
+            color: #d4af37;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 3px double #d4af37;
+            font-size: 14px;
+        }
+
+        #efekt-koncowy-link {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #d4af37;
+            color: #2b1d11;
+            padding: 8px 15px;
+            border: 1px solid #4a3525;
+            border-radius: 3px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        #efekt-koncowy-link:hover {
+            background-color: #2b1d11;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+        .start-button {
+            display: inline-block;
+            background-color: #d4af37;
+            color: #2b1d11;
+            padding: 12px 20px;
+            border: 1px solid #4a3525;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 2px 0 rgba(0,0,0,0.08);
+        }
+
+        .start-button:hover {
+            background-color: #2b1d11;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+            .efekt-title {
+    font-size: 14px;
+    color: #a62c2c;
+    margin-bottom: 10px;
+}
+
+.podglad-strony {
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    border: 1px solid #c0c0c0;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 10px;
+    overflow: auto;
+}
+
+.podglad-strony h4 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: #a62c2c;
+    border-bottom: 1px solid #4a3525;
+    padding-bottom: 5px;
+}
+
+.menu-podglad {
+    margin-bottom: 10px;
+}
+
+.menu-podglad a {
+    color: blue;
+    font-size: 10px;
+    margin-right: 10px;
+    text-decoration: underline;
+}
+
+.wiersz {
+    border: 1px dotted #999;
+    padding: 6px;
+    margin-bottom: 5px;
+}
+
+.stopka-podglad {
+    margin-top: 15px;
+    border-top: 1px solid #bbb;
+    padding-top: 8px;
+    color: #333;
+}
+.formularz-podglad {
+    border: 1px dotted #999;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.formularz-podglad h5 {
+    margin: 0 0 8px 0;
+    text-align: center;
+    color: #a62c2c;
+    font-size: 12px;
+}
+
+.formularz-podglad label {
+    display: block;
+    font-size: 10px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.formularz-podglad input,
+.formularz-podglad select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 3px;
+    margin-top: 2px;
+    font-size: 9px;
+}
+
+.formularz-podglad button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px;
+    border: none;
+    background: #5b3d27;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.podglad-zamek {
+    width: 100%;
+    height: 100%;
+    background: #2b1d11;
+    padding: 8px;
+    box-sizing: border-box;
+    color: #d4af37;
+    font-size: 8px;
+}
+
+.zamek-header {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+}
+
+.zamek-kolumny {
+    display: flex;
+    gap: 4px;
+    height: 180px;
+}
+
+.zamek-lewa,
+.zamek-prawa {
+    width: 25%;
+    background: #5b3d27;
+    border: 1px solid #d4af37;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.zamek-srodek {
+    width: 50%;
+    background: #f5f0e6;
+    color: #2b1d11;
+    border: 1px solid #4a3525;
+    padding: 4px;
+    box-sizing: border-box;
+}
+.preview-final {
+    width: 100%;
+    height: 420px;
+    background: #2c3e50;
+    color: #ecf0f1;
+    font-size: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.pf-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #34495e;
+    border-bottom: 2px solid #f1c40f;
+    padding: 6px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.pf-main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pf-wieza {
+    width: 100%;
+    background: #7f8c8d;
+    border: 2px solid #34495e;
+    border-radius: 4px;
+    padding: 8px;
+    box-sizing: border-box;
+    position: relative;
+    min-height: 70px;
+}
+
+.pf-flag {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    width: 14px;
+    height: 20px;
+    background: #e74c3c;
+    border-left: 2px solid #f1c40f;
+}
+
+.pf-sala {
+    width: 100%;
+    background: #95a5a6;
+    color: #2c3e50;
+    border: 2px solid #34495e;
+    border-radius: 4px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.pf-sala h4 {
+    margin: 0 0 8px 0;
+    color: #f1c40f;
+    font-size: 11px;
+}
+
+.pf-sala table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+    font-size: 9px;
+}
+
+.pf-sala th,
+.pf-sala td {
+    border: 1px solid #bdc3c7;
+    padding: 4px;
+}
+
+.pf-sala th {
+    background: #f1c40f;
+    color: #2c3e50;
+}
+
+.pf-sala input {
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+    margin-bottom: 6px;
+    font-size: 9px;
+}
+
+.pf-sala button {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background: #f1c40f;
+    color: #2c3e50;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pf-sala button:disabled,
+.pf-sala input:disabled {
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="lekcja1.html">Lekcja 1</a></li>
+                <li><a href="lekcja2.html">Lekcja 2</a></li>
+                <li><a href="lekcja3.html">Lekcja 3</a></li>
+                <li><a href="lekcja4.html">Lekcja 4</a></li>
+                <li><a href="lekcja5.html">Lekcja 5</a></li>
+                <li><a href="lekcja6.html">Lekcja 6</a></li>
+                <li><a href="lekcja7.html">Lekcja 7</a></li>
+                <li><a href="lekcja8.html">Lekcja 8</a></li>
+                <li><a href="lekcja9.html">Lekcja 9</a></li>
+                <li><a href="lekcja10.html">Lekcja10</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="kontener-glowny">
+        <div class="boczna-kolumna">
+            <div class="box">
+    <div class="efekt-title">EFEKT 1</div>
+
+    <div class="podglad-strony">
+        <h4>EFEKT W PRZEGLĄDARCE (ZAMEK.HTML)</h4>
+
+        <div class="menu-podglad">
+            <a href="#">Dziedziniec</a>
+            <a href="#">Skarbiec</a>
+            <a href="#">Koszary</a>
+        </div>
+
+        <div class="wiersz">[Komnata Lewa]</div>
+        <div class="wiersz">[Sala Tronowa]</div>
+        <div class="wiersz">[Komnata Prawa]</div>
+
+        <div class="stopka-podglad">
+            © 2026 Twoje imię i nazwisko.
+        </div>
+    </div>
+</div>
+            <div class="box">
+               
+    <div class="efekt-title">EFEKT 2</div>
+
+    <div class="podglad-strony">
+        <h4>EFEKT W PRZEGLĄDARCE (ZAMEK.HTML)</h4>
+
+        <div class="menu-podglad">
+            <a href="#">Dziedziniec</a>
+            <a href="#">Skarbiec</a>
+            <a href="#">Koszary</a>
+        </div>
+
+        <div class="formularz-podglad">
+            <h5>Zaciąg do Armii</h5>
+
+            <label>Imię / Przydomek:</label>
+            <input type="text" placeholder="np. Gall Anonim">
+
+            <label>Profesja militarna:</label>
+            <select>
+                <option>Łucznik</option>
+            </select>
+
+            <button>Wyślij Gryfa</button>
+        </div>
+
+        <div class="stopka-podglad">
+            © 2026 Twoje imię i nazwisko.
+        </div>
+    
+</div>
+            </div>
+        </div>
+
+        <div id="srodkowy-div">
+            <h2 style="font-family: 'UnifrakturCook', 'Cinzel', serif;">
+    Witaj w Średniowiecznym Samouczku HTML5 i CSS3!
+
+    W tym poradniku poznasz podstawy języków HTML oraz CSS i nauczysz się krok po kroku tworzyć własne strony internetowe. <br><br> Kurs został przygotowany z myślą o osobach rozpoczynających swoją przygodę z programowaniem, dlatego wszystkie zagadnienia są wyjaśniane w prosty i przystępny sposób.<br><br>
+
+    Podczas swojej średniowiecznej podróży będziesz rozwijać umiejętności niczym młody architekt królewskiego zamku. <br> <br>Przed Tobą 10 lekcji, które wprowadzą Cię w świat tworzenia stron internetowych – od prostych nagłówków i tekstów, przez linki, obrazy, formularze i tabele, aż po stylizowanie elementów za pomocą CSS oraz tworzenie nowoczesnych układów stron.<br><br>
+
+    Na swojej drodze napotkasz liczne wyzwania w formie ćwiczeń praktycznych, które pozwolą Ci utrwalić zdobytą wiedzę.<br><br> Dodatkowo każdej lekcji towarzyszy fabuła związana z budową średniowiecznego zamku, dzięki której nauka staje się ciekawsza i bardziej angażująca.<br><br>
+
+    W trakcie kursu znajdziesz również przydatne ciekawostki, wskazówki oraz porady, które pomogą Ci lepiej zrozumieć działanie HTML i CSS oraz uniknąć najczęstszych błędów popełnianych przez początkujących twórców stron internetowych.<br><br>
+
+    Czy jesteś gotowy rozpocząć swoją przygodę i wznieść własną cyfrową twierdzę? Załóż zbroję młodego architekta i przejdź do Lekcji 1!
+
+            </h2>
+            <div style="text-align:center; margin-top:20px;">
+                <a href="lekcja1.html" class="start-button">zacznij teraz !</a>
+            </div>
+        </div>
+
+        <div class="boczna-kolumna">
+            <div class="box">
+    <div class="efekt-title">EFEKT 3</div>
+
+    <div class="podglad-zamek">
+        <div class="zamek-header">
+            NAWIGACJA ZAMKOWA
+        </div>
+
+        <div class="zamek-kolumny">
+            <div class="zamek-lewa">
+                LEWA KOLUMNA
+            </div>
+
+            <div class="zamek-srodek">
+                SALA TRONOWA (CENTRALNA)
+            </div>
+
+            <div class="zamek-prawa">
+                PRAWA KOLUMNA
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="box">
+    <div class="box-title">Efekt 4</div>
+
+    <div class="preview-final">
+        <div class="pf-header">
+            <span>Brama</span>
+            <span>Zbrojownia ▾</span>
+            <span>Skarbiec</span>
+        </div>
+
+        <div class="pf-main">
+            <div class="pf-wieza">
+                <div class="pf-flag"></div>
+                <strong>Wieża</strong>
+                <p>Garnizon: 12</p>
+            </div>
+
+            <div class="pf-sala">
+                <h4>Sala Główna</h4>
+
+                <table>
+                    <tr>
+                        <th>Broń</th>
+                        <th>Ilość</th>
+                    </tr>
+                    <tr>
+                        <td>Miecze</td>
+                        <td>45</td>
+                    </tr>
+                </table>
+
+                <input type="text" placeholder="Imię rekruta" disabled>
+                <button disabled>Dołącz</button>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Jakub Tarnopolski. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    
+
+</body>
+</html>

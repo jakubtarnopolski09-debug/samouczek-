@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samouczek HTML5 & CSS3 - Lekcja 4</title>
+    <style>
+        body {
+            background-color: #f4ecd8;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header.panel-kursu {
+            background-color: #4a3525;
+            border-bottom: 3px double #d4af37;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } 
+
+        .panel-kursu ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .panel-kursu ul li a {
+            display: block;
+            background-color: #d4af37;
+            color: #2b1d11;
+            padding: 6px 12px;
+            border: 1px solid #4a3525;
+            border-radius: 3px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .panel-kursu ul li a:hover, .panel-kursu ul li a.active {
+            background-color: #2b1d11;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+
+        #kontener-glowny {
+            display: flex;
+            flex: 1;
+        }
+
+        #srodkowy-div {
+            width: 50%;
+            background-color: #faf4e8;
+            padding: 30px;
+            box-sizing: border-box;
+            border-left: 1px solid #4a3525;
+            border-right: 1px solid #4a3525;
+        }
+
+        .boczna-kolumna {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px dashed #4a3525;
+            margin: 10px;
+            background-color: #ebdcb9;
+            color: #4a3525;
+            font-weight: bold;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        .box-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #4a3525;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #a62c2c;
+        }
+
+        footer.stopka-kursu {
+            background-color: #4a3525;
+            color: #d4af37;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 3px double #d4af37;
+            font-size: 14px;
+        }
+
+        .browser-preview {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Times New Roman', Times, serif;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+            font-weight: normal;
+            font-size: 14px;
+            overflow-y: auto;
+        }
+
+        .preview-header { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 5px; }
+        .preview-nav { display: flex; gap: 10px; font-size: 11px; font-weight: bold; }
+        .preview-nav a { color: blue; text-decoration: underline; }
+        .preview-main { min-height: 120px; }
+        .preview-col { border: 1px dotted #aaa; margin-bottom: 8px; padding: 5px; font-size: 11px; text-align: center; }
+        .preview-col h1 { font-size: 16px; margin: 2px 0; }
+        .preview-col h2 { font-size: 12px; margin: 2px 0; color: #a62c2c; }
+        .preview-col p { font-size: 10px; margin: 4px 0; text-align: justify; }
+        .preview-footer { border-top: 1px solid #ccc; padding-top: 5px; font-size: 11px; color: #555; }
+
+        .svg-mini { width: 30px; height: 30px; margin: 5px auto; display: block; }
+
+        .vsc-window {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .vsc-header {
+            background-color: #323233;
+            padding: 8px 12px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .vsc-dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .vsc-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .vsc-dot.red { background-color: #ff5f56; }
+        .vsc-dot.yellow { background-color: #ffbd2e; }
+        .vsc-dot.green { background-color: #27c93f; }
+        .vsc-tab { color: #9cdcfe; font-size: 12px; }
+        .vsc-content { padding: 15px; line-height: 1.5; white-space: pre; overflow-x: auto; }
+        .vsc-tag { color: #569cd6; }
+        .vsc-attr { color: #9cdcfe; }
+        .vsc-val { color: #ce9178; }
+
+        .sekcja-cwiczen {
+            margin-top: 40px;
+            background-color: #ebdcb9;
+            border: 2px solid #4a3525;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .cwiczenie {
+            background-color: #faf4e8;
+            border: 1px solid #4a3525;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .cwiczenie h4 { margin: 0 0 5px 0; color: #a62c2c; }
+        .cwiczenie p { margin: 0; font-size: 14px; }
+
+        .btn-lekcja { display: inline-block; background: #4a3525; color: #d4af37; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header class="panel-kursu">
+        <nav>
+            <ul>
+                <li><a href="lekcja1.html">Lekcja 1</a></li>
+                <li><a href="lekcja2.html">Lekcja 2</a></li>
+                <li><a href="lekcja3.html">Lekcja 3</a></li>
+                <li><a href="lekcja4.html" class="active">Lekcja 4</a></li>
+                <li><a href="lekcja5.html">Lekcja 5</a></li>
+                <li><a href="lekcja6.html">Lekcja 6</a></li>
+                <li><a href="lekcja7.html">Lekcja 7</a></li>
+                <li><a href="lekcja8.html">Lekcja 8</a></li>
+                <li><a href="lekcja9.html">Lekcja 9</a></li>
+                <li><a href="lekcja10.html">Lekcja 10</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="kontener-glowny">
+        
+        <div class="boczna-kolumna">
+            <div class="box" style="height: 100%;">
+                <div class="box-title">Efekt w Przeglądarce (zamek.html)</div>
+                <div class="browser-preview">
+                    <div class="preview-header">
+                        <div class="preview-nav">
+                            <a href="#dziedziniec">Dziedziniec</a>
+                            <a href="#skarbiec">Skarbiec</a>
+                            <a href="#koszary">Koszary</a>
+                        </div>
+                    </div>
+                    <div class="preview-main">
+                        <div class="preview-col">
+                            <svg class="svg-mini" viewBox="0 0 100 100"><rect x="15" y="10" width="6" height="80" fill="#d4af37"/><path d="M21 15 L75 30 L21 45 Z" fill="#a62c2c"/></svg>
+                            <h2>Proporzec Zamkowy</h2>
+                            <p>Animowana flaga stworzona całkowicie za pomocą czystego kodu CSS...</p>
+                            <svg class="svg-mini" viewBox="0 0 100 100"><path d="M10 10 L90 10 L90 50 C90 80, 50 100, 50 100 C50 100, 10 80, 10 50 Z" fill="#a62c2c" stroke="#4a3525" stroke-width="3"/></svg>
+                            <h2>Herb Królestwa</h2>
+                            <p>Grafika wektorowa SVG zaimplementowana bezpośrednio...</p>
+                        </div>
+                        <div class="preview-col">
+                            <h1>Wielka Sala Tronowa</h1>
+                            <p>Witaj w sercu ukończonego zamku...</p>
+                        </div>
+                    </div>
+                    <div class="preview-footer">
+                        © 2026 Twoje imię i nazwisko. Projekt Warowni HTML5 & CSS3 ukończony.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="srodkowy-div">
+            <h2>Lekcja 4: Nadworni Malarze (Grafika wektorowa SVG)</h2>
+            
+            <p>Prawdziwa warownia potrzebuje symboli. Zamiast zwykłych zdjęć, które tracą na jakości przy powiększaniu, użyjemy standardu <strong>SVG (Scalable Vector Graphics)</strong>. Jest to grafika opisana kodem matematycznym, dzięki czemu nasz herb i proporzec będą idealnie ostre na każdym urządzeniu.</p>
+
+            <h3>Zalety grafik SVG w kodzie:</h3>
+            <ul>
+                <li><strong>Skalowalność</strong> - Możesz powiększyć herb do rozmiarów prawdziwej bramy zamkowej, a krawędzie nadal będą gładkie.</li>
+                <li><strong>Kontrola przez CSS</strong> - W przyszłych lekcjach będziemy mogli animować poszczególne linie kodu SVG (np. powiewanie flagi).</li>
+                <li><strong>Szybkość</strong> - Kod SVG waży mniej niż plik graficzny i ładuje się błyskawicznie.</li>
+            </ul>
+
+            <h3>Kod źródłowy w Edytorze:</h3>
+            
+            <div class="vsc-window">
+                <div class="vsc-header">
+                    <div class="vsc-dots">
+                        <div class="vsc-dot red"></div>
+                        <div class="vsc-dot yellow"></div>
+                        <div class="vsc-dot green"></div>
+                    </div>
+                    <div class="vsc-tab">zamek.html</div>
+                </div>
+                <div class="vsc-content"><span class="vsc-tag">&lt;div</span> <span class="vsc-attr">class</span>=<span class="vsc-val">"kolumna-lewa"</span><span class="vsc-tag">&gt;</span>
+    <span class="vsc-tag">&lt;div</span> <span class="vsc-attr">class</span>=<span class="vsc-val">"komnata-karta"</span><span class="vsc-tag">&gt;</span>
+        <span class="vsc-tag">&lt;svg</span> <span class="vsc-attr">width</span>=<span class="vsc-val">"60"</span> <span class="vsc-attr">height</span>=<span class="vsc-val">"60"</span> <span class="vsc-attr">viewBox</span>=<span class="vsc-val">"0 0 100 100"</span><span class="vsc-tag">&gt;</span>
+            <span class="vsc-tag">&lt;rect</span> <span class="vsc-attr">x</span>=<span class="vsc-val">"15"</span> <span class="vsc-attr">y</span>=<span class="vsc-val">"10"</span> <span class="vsc-attr">width</span>=<span class="vsc-val">"6"</span> <span class="vsc-attr">height</span>=<span class="vsc-val">"80"</span> <span class="vsc-attr">fill</span>=<span class="vsc-val">"#d4af37"</span><span class="vsc-tag">/&gt;</span>
+            <span class="vsc-tag">&lt;path</span> <span class="vsc-attr">d</span>=<span class="vsc-val">"M21 15 L75 30 L21 45 Z"</span> <span class="vsc-attr">fill</span>=<span class="vsc-val">"#a62c2c"</span><span class="vsc-tag">/&gt;</span>
+        <span class="vsc-tag">&lt;/svg&gt;</span>
+        <span class="vsc-tag">&lt;h2&gt;</span>Proporzec Zamkowy<span class="vsc-tag">&lt;/h2&gt;</span>
+    <span class="vsc-tag">&lt;/div&gt;</span>
+
+    <span class="vsc-tag">&lt;div</span> <span class="vsc-attr">class</span>=<span class="vsc-val">"komnata-karta"</span><span class="vsc-tag">&gt;</span>
+        <span class="vsc-tag">&lt;svg</span> <span class="vsc-attr">width</span>=<span class="vsc-val">"70"</span> <span class="vsc-attr">height</span>=<span class="vsc-val">"70"</span> <span class="vsc-attr">viewBox</span>=<span class="vsc-val">"0 0 100 100"</span><span class="vsc-tag">&gt;</span>
+            <span class="vsc-tag">&lt;path</span> <span class="vsc-attr">d</span>=<span class="vsc-val">"M10 10 L90 10 L90 50 C90 80, 50 100, 50 100 C50 100, 10 80, 10 50 Z"</span> <span class="vsc-attr">fill</span>=<span class="vsc-val">"#a62c2c"</span> <span class="vsc-attr">stroke</span>=<span class="vsc-val">"#4a3525"</span> <span class="vsc-attr">stroke-width</span>=<span class="vsc-val">"3"</span><span class="vsc-tag">/&gt;</span>
+            <span class="vsc-tag">&lt;circle</span> <span class="vsc-attr">cx</span>=<span class="vsc-val">"50"</span> <span class="vsc-attr">cy</span>=<span class="vsc-val">"45"</span> <span class="vsc-attr">r</span>=<span class="vsc-val">"12"</span> <span class="vsc-attr">fill</span>=<span class="vsc-val">"#d4af37"</span><span class="vsc-tag">/&gt;</span>
+        <span class="vsc-tag">&lt;/svg&gt;</span>
+        <span class="vsc-tag">&lt;h2&gt;</span>Herb Królestwa<span class="vsc-tag">&lt;/h2&gt;</span>
+    <span class="vsc-tag">&lt;/div&gt;</span>
+<span class="vsc-tag">&lt;/div&gt;</span></div>
+            </div>
+
+            <div class="sekcja-cwiczen">
+                <h3>Zadania dla Młodego Architekta:</h3>
+                
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 1: Wniesienie proporca</h4>
+                    <p>Wewnątrz pierwszej karty lewej kolumny (nad nagłówkiem h2) wstaw kod znacznika <code>&lt;svg&gt;</code> tworzący maszt (rect) oraz płótno flagi (path).</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 2: Wykucie herbu w murze</h4>
+                    <p>W drugiej karcie lewej kolumny umieść strukturę <code>&lt;svg&gt;</code> rysującą tarczę herbowniczą oraz centralny detal (circle).</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 3: Kalibracja "płótna" wizualnego</h4>
+                    <p>Upewnij się, że oba znaczniki posiadają atrybut <code>viewBox="0 0 100 100"</code>. To on definiuje wirtualne współrzędne, według których przeglądarka rysuje kształty.</p>
+                </div>
+            </div>
+
+            <div id="nawigacja-lekcji" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <a href="lekcja3.html" class="btn-lekcja">⬅ Lekcja 3</a>
+                <a href="lekcja5.html" class="btn-lekcja">Lekcja 5 ➡</a>
+            </div>
+        </div>
+
+        <div class="boczna-kolumna">
+            <div class="box">
+                <div class="box-title">Stan Budowy</div>
+                <p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">Faza 4: Symbole rodowe osadzone. Zamek zyskał unikalną tożsamość wizualną poprzez implementację natywnego kodu wektorowego.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Księga Architekta</div>
+                <p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;"><p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">
+    SVG (Scalable Vector Graphics) jest standardem grafiki wektorowej wykorzystywanym przez nowoczesne strony internetowe. W przeciwieństwie do obrazów JPG czy PNG, grafika SVG nie składa się z pikseli, lecz z figur geometrycznych opisanych kodem.
+</p>
+
+<br>
+
+<p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">
+    Dzięki temu zachowuje idealną jakość niezależnie od rozmiaru wyświetlania. Możesz powiększyć ikonę lub herb nawet kilkukrotnie, a krawędzie nadal pozostaną ostre i wyraźne.
+</p>
+
+<br>
+
+<p style="font-size: 13px; font-weight: normal; text-align: left; margin: 0;">
+    Najpopularniejsze elementy SVG to:
+</p>
+
+<ul style="font-size: 13px; font-weight: normal; margin-top: 8px;">
+    <li><code>&lt;rect&gt;</code> – rysuje prostokąty i kwadraty.</li>
+    <li><code>&lt;circle&gt;</code> – tworzy okręgi.</li>
+    <li><code>&lt;ellipse&gt;</code> – rysuje elipsy.</li>
+    <li><code>&lt;line&gt;</code> – tworzy pojedyncze linie.</li>
+    <li><code>&lt;polygon&gt;</code> – pozwala tworzyć wielokąty.</li>
+    <li><code>&lt;path&gt;</code> – umożliwia rysowanie najbardziej zaawansowanych kształtów.</li>
+</ul>
+
+<br>
+
+<p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">
+    Ciekawostka: większość ikon używanych w nowoczesnych aplikacjach internetowych jest tworzona właśnie przy użyciu SVG. Dzięki temu strony ładują się szybciej i zajmują mniej miejsca niż przy wykorzystaniu tradycyjnych grafik.
+</p>
+
+<br>
+
+<p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">
+    Elementy SVG można również stylizować za pomocą CSS. Oznacza to, że ich kolor, rozmiar, obramowanie, a nawet animacje mogą być kontrolowane bezpośrednio z poziomu kodu strony.
+</p></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="stopka-kursu">
+        &copy; Twoje imię i nazwisko. Wszelkie prawa zastrzeżone.
+    </footer>
+
+</body>
+</html>
