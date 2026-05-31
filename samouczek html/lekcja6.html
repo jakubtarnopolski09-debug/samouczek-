@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samouczek HTML5 & CSS3 - Lekcja 6</title>
+    <style>
+        body {
+            background-color: #f4ecd8;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header.panel-kursu {
+            background-color: #4a3525;
+            border-bottom: 3px double #d4af37;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } 
+
+        .panel-kursu ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .panel-kursu ul li a {
+            display: block;
+            background-color: #d4af37;
+            color: #2b1d11;
+            padding: 6px 12px;
+            border: 1px solid #4a3525;
+            border-radius: 3px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .panel-kursu ul li a:hover, .panel-kursu ul li a.active {
+            background-color: #2b1d11;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+
+        #kontener-glowny {
+            display: flex;
+            flex: 1;
+        }
+
+        #srodkowy-div {
+            width: 50%;
+            background-color: #faf4e8;
+            padding: 30px;
+            box-sizing: border-box;
+            border-left: 1px solid #4a3525;
+            border-right: 1px solid #4a3525;
+        }
+
+        .boczna-kolumna {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px dashed #4a3525;
+            margin: 10px;
+            background-color: #ebdcb9;
+            color: #4a3525;
+            font-weight: bold;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        .box-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #4a3525;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #a62c2c;
+        }
+
+        footer.stopka-kursu {
+            background-color: #4a3525;
+            color: #d4af37;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 3px double #d4af37;
+            font-size: 14px;
+        }
+
+        .browser-preview {
+            background-color: #2b1d11;
+            color: #d4af37;
+            font-family: 'Times New Roman', Times, serif;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+            font-weight: normal;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .preview-header { border-bottom: 2px solid #d4af37; padding-bottom: 5px; margin-bottom: 10px; text-align: center; font-size: 10px; font-weight: bold; text-transform: uppercase; }
+        
+        .preview-main-layout {
+            display: flex;
+            flex: 1;
+            gap: 5px;
+            height: 100%;
+        }
+
+        .preview-col-side { width: 25%; background: #4a3525; border: 1px solid #d4af37; font-size: 8px; padding: 5px; color: #d4af37; }
+        .preview-col-center { width: 50%; background: #faf4e8; color: #2b1d11; border: 1px solid #4a3525; font-size: 8px; padding: 5px; }
+
+        .vsc-window {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .vsc-header {
+            background-color: #323233;
+            padding: 8px 12px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .vsc-dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .vsc-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .vsc-dot.red { background-color: #ff5f56; }
+        .vsc-dot.yellow { background-color: #ffbd2e; }
+        .vsc-dot.green { background-color: #27c93f; }
+        .vsc-tab { color: #9cdcfe; font-size: 12px; }
+        .vsc-content { padding: 15px; line-height: 1.5; white-space: pre; overflow-x: auto; }
+        .vsc-tag { color: #569cd6; }
+        .vsc-attr { color: #9cdcfe; }
+        .vsc-val { color: #ce9178; }
+        .vsc-css-sel { color: #d7ba7d; }
+        .vsc-css-prop { color: #9cdcfe; }
+
+        .sekcja-cwiczen {
+            margin-top: 40px;
+            background-color: #ebdcb9;
+            border: 2px solid #4a3525;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .cwiczenie {
+            background-color: #faf4e8;
+            border: 1px solid #4a3525;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .cwiczenie h4 { margin: 0 0 5px 0; color: #a62c2c; }
+        .cwiczenie p { margin: 0; font-size: 14px; }
+        
+        .btn-lekcja { display: inline-block; background: #4a3525; color: #d4af37; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header class="panel-kursu">
+        <nav>
+            <ul>
+                <li><a href="lekcja1.html">Lekcja 1</a></li>
+                <li><a href="lekcja2.html">Lekcja 2</a></li>
+                <li><a href="lekcja3.html">Lekcja 3</a></li>
+                <li><a href="lekcja4.html">Lekcja 4</a></li>
+                <li><a href="lekcja5.html">Lekcja 5</a></li>
+                <li><a href="lekcja6.html" class="active">Lekcja 6</a></li>
+                <li><a href="lekcja7.html">Lekcja 7</a></li>
+                <li><a href="lekcja8.html">Lekcja 8</a></li>
+                <li><a href="lekcja9.html">Lekcja 9</a></li>
+                <li><a href="lekcja10.html">Lekcja 10</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="kontener-glowny">
+        
+        <div class="boczna-kolumna">
+            <div class="box" style="height: 100%;">
+                <div class="box-title">Efekt w Przeglądarce (zamek.html)</div>
+                <div class="browser-preview">
+                    <div class="preview-header">NAWIGACJA ZAMKOWA</div>
+                    <div class="preview-main-layout">
+                        <div class="preview-col-side">LEWA KOLUMNA</div>
+                        <div class="preview-col-center">SALA TRONOWA (CENTRALNA)</div>
+                        <div class="preview-col-side">PRAWA KOLUMNA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="srodkowy-div">
+            <h2>Lekcja 6: Szyki Bojowe i Architektura (Układ Flexbox i Kolory)</h2>
+            
+            <p>Aby nasz zamek wyglądał jak na makiety, musimy wdrożyć arkusz stylów <strong>CSS</strong>. Najpierw ustalimy tło świata, a następnie użyjemy właściwości <code>display: flex</code>, która rozkaże kolumnom stać obok siebie, a nie jedna pod drugą.</p>
+
+            <h3>Kluczowe właściwości układu:</h3>
+            <ul>
+                <li><strong>display: flex;</strong> - Aktywuje tryb elastycznego kontenera. Wszystkie dzieci (kolumny) ustawią się w jednym rzędzie.</li>
+                <li><strong>flex: 1;</strong> - Pozwala elementowi rosnąć i wypełniać dostępną przestrzeń.</li>
+                <li><strong>background-color:</strong> - Definiuje barwę tła (używamy kodów Hex, np. #2b1d11).</li>
+            </ul>
+
+            <h3>Kod CSS do wstawienia w &lt;head&gt;:</h3>
+            
+            <div class="vsc-window">
+                <div class="vsc-header">
+                    <div class="vsc-dots">
+                        <div class="vsc-dot red"></div>
+                        <div class="vsc-dot yellow"></div>
+                        <div class="vsc-dot green"></div>
+                    </div>
+                    <div class="vsc-tab">zamek.html (Style CSS)</div>
+                </div>
+                <div class="vsc-content"><span class="vsc-tag">&lt;style&gt;</span>
+    <span class="vsc-css-sel">body</span> {
+        <span class="vsc-css-prop">background-color</span>: <span class="vsc-val">#2b1d11</span>;
+        <span class="vsc-css-prop">color</span>: <span class="vsc-val">#d4af37</span>;
+        <span class="vsc-css-prop">margin</span>: <span class="vsc-val">0</span>;
+    }
+
+    <span class="vsc-css-sel">main</span> {
+        <span class="vsc-css-prop">display</span>: <span class="vsc-val">flex</span>;
+        <span class="vsc-css-prop">justify-content</span>: <span class="vsc-val">center</span>;
+        <span class="vsc-css-prop">gap</span>: <span class="vsc-val">25px</span>;
+        <span class="vsc-css-prop">padding</span>: <span class="vsc-val">20px</span>;
+    }
+
+    <span class="vsc-css-sel">.kolumna-lewa, .kolumna-prawa</span> { <span class="vsc-css-prop">width</span>: <span class="vsc-val">25%</span>; }
+    <span class="vsc-css-sel">.kolumna-srodkowa</span> { <span class="vsc-css-prop">width</span>: <span class="vsc-val">50%</span>; <span class="vsc-css-prop">background</span>: <span class="vsc-val">#faf4e8</span>; }
+<span class="vsc-tag">&lt;/style&gt;</span></div>
+            </div>
+
+            <div class="sekcja-cwiczen">
+                <h3>Zadania Architekta:</h3>
+                
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 1: Malowanie nieba i ziemi</h4>
+                    <p>W sekcji <code>&lt;head&gt;</code> stwórz znacznik <code>&lt;style&gt;</code> i ustaw dla <code>body</code> ciemnobrązowe tło (<code>#2b1d11</code>).</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 2: Formowanie szyku kolumn</h4>
+                    <p>Dodaj regułę dla znacznika <code>main</code> i wpisz <code>display: flex;</code>. Zobacz w podglądzie, jak kolumny natychmiast wskakują obok siebie.</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 3: Rozstawienie baszt</h4>
+                    <p>Ustaw szerokości kolumn (width) według proporcji: boczne 25%, środkowa 50%.</p>
+                </div>
+            </div>
+
+            <div id="nawigacja-lekcji" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <a href="lekcja5.html" class="btn-lekcja">⬅ Lekcja 5</a>
+                <a href="lekcja7.html" class="btn-lekcja">Lekcja 7 ➡</a>
+            </div>
+        </div>
+
+        <div class="boczna-kolumna">
+            <div class="box">
+                <div class="box-title">Stan Budowy</div>
+                <p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">Faza 6: Pierwszy CSS wdrożony. Układ z liniowego zmienił się w kolumnowy. Zamek nabiera trójwymiarowości dzięki elastycznemu układowi.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Księga Architekta</div>
+               <p>
+Księga Architekta opisuje Flexbox jako jedno z najważniejszych narzędzi CSS3, które pozwala porządkować elementy strony w sposób elastyczny i logiczny. Zamiast dawnych, sztywnych metod układu, takich jak float, otrzymujemy system, który sam dostosowuje się do dostępnej przestrzeni i układu ekranu.
+</p>
+
+<p>
+Najważniejsze właściwości, które poznaliśmy w tej lekcji:
+</p>
+
+<ul>
+    <li><strong>display: flex</strong> – uruchamia elastyczny tryb układu i ustawia elementy w jednym rzędzie</li>
+    <li><strong>flex: 1</strong> – pozwala elementom rosnąć i równomiernie wypełniać przestrzeń</li>
+    <li><strong>background-color</strong> – nadaje światu barwy i buduje klimat zamku</li>
+    <li><strong>justify-content</strong> – kontroluje rozmieszczenie kolumn w poziomie</li>
+</ul>
+
+<p>
+W praktyce oznacza to, że nasz zamek zaczyna zachowywać się jak dobrze zaprojektowana struktura architektoniczna:
+</p>
+
+<ul>
+    <li>lewa wieża stabilnie trzyma swoją pozycję</li>
+    <li>sala tronowa zajmuje centralne, najważniejsze miejsce</li>
+    <li>prawa wieża równoważy całą konstrukcję</li>
+</ul>
+
+<p>
+Dzięki Flexboxowi układ przestaje być chaotyczny, a staje się kontrolowaną, żywą strukturą – jak prawdziwy cyfrowy zamek, który reaguje na zmiany przestrzeni i rozmiaru ekranu.
+</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="stopka-kursu">
+        &copy; Twoje imię i nazwisko. Wszelkie prawa zastrzeżone.
+    </footer>
+
+</body>
+</html>

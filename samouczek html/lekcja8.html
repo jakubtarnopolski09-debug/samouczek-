@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samouczek HTML5 & CSS3 - Lekcja 8</title>
+    <style>
+        body {
+            background-color: #f4ecd8;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header.panel-kursu {
+            background-color: #4a3525;
+            border-bottom: 3px double #d4af37;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } 
+
+        .panel-kursu ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .panel-kursu ul li a {
+            display: block;
+            background-color: #d4af37;
+            color: #2b1d11;
+            padding: 6px 12px;
+            border: 1px solid #4a3525;
+            border-radius: 3px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .panel-kursu ul li a:hover, .panel-kursu ul li a.active {
+            background-color: #2b1d11;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+
+        #kontener-glowny {
+            display: flex;
+            flex: 1;
+        }
+
+        #srodkowy-div {
+            width: 50%;
+            background-color: #faf4e8;
+            padding: 30px;
+            box-sizing: border-box;
+            border-left: 1px solid #4a3525;
+            border-right: 1px solid #4a3525;
+        }
+
+        .boczna-kolumna {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px dashed #4a3525;
+            margin: 10px;
+            background-color: #ebdcb9;
+            color: #4a3525;
+            font-weight: bold;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        .box-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #4a3525;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #a62c2c;
+        }
+
+        footer.stopka-kursu {
+            background-color: #4a3525;
+            color: #d4af37;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 3px double #d4af37;
+            font-size: 14px;
+        }
+
+        .browser-preview {
+            background-color: #2b1d11;
+            color: #d4af37;
+            font-family: 'Times New Roman', Times, serif;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+            font-weight: normal;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .preview-header { border-bottom: 2px solid #d4af37; padding-bottom: 5px; margin-bottom: 10px; text-align: center; font-size: 10px; font-weight: bold; text-transform: uppercase; }
+        
+        .preview-form {
+            background-color: #faf4e8;
+            border: 1px solid #4a3525;
+            padding: 10px;
+            font-size: 11px;
+            color: #2b1d11;
+            font-family: sans-serif;
+        }
+
+        .preview-form label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+
+        .preview-form p {
+            margin: 8px 0 4px 0;
+            font-weight: bold;
+            color: #a62c2c;
+        }
+
+        .preview-form textarea {
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 11px;
+            padding: 4px;
+            font-family: inherit;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+
+        .vsc-window {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .vsc-header {
+            background-color: #323233;
+            padding: 8px 12px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .vsc-dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .vsc-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .vsc-dot.red { background-color: #ff5f56; }
+        .vsc-dot.yellow { background-color: #ffbd2e; }
+        .vsc-dot.green { background-color: #27c93f; }
+        .vsc-tab { color: #9cdcfe; font-size: 12px; }
+        .vsc-content { padding: 15px; line-height: 1.5; white-space: pre; overflow-x: auto; }
+        .vsc-tag { color: #569cd6; }
+        .vsc-attr { color: #9cdcfe; }
+        .vsc-val { color: #ce9178; }
+
+        .sekcja-cwiczen {
+            margin-top: 40px;
+            background-color: #ebdcb9;
+            border: 2px solid #4a3525;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .cwiczenie {
+            background-color: #faf4e8;
+            border: 1px solid #4a3525;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .cwiczenie h4 { margin: 0 0 5px 0; color: #a62c2c; }
+        .cwiczenie p { margin: 0; font-size: 14px; }
+        
+        .btn-lekcja { display: inline-block; background: #4a3525; color: #d4af37; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header class="panel-kursu">
+        <nav>
+            <ul>
+                <li><a href="lekcja1.html">Lekcja 1</a></li>
+                <li><a href="lekcja2.html">Lekcja 2</a></li>
+                <li><a href="lekcja3.html">Lekcja 3</a></li>
+                <li><a href="lekcja4.html">Lekcja 4</a></li>
+                <li><a href="lekcja5.html">Lekcja 5</a></li>
+                <li><a href="lekcja6.html">Lekcja 6</a></li>
+                <li><a href="lekcja7.html">Lekcja 7</a></li>
+                <li><a href="lekcja8.html" class="active">Lekcja 8</a></li>
+                <li><a href="lekcja9.html">Lekcja 9</a></li>
+                <li><a href="lekcja10.html">Lekcja 10</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="kontener-glowny">
+        
+        <div class="boczna-kolumna">
+            <div class="box" style="height: 100%;">
+                <div class="box-title">Efekt w Przeglądarce (zamek.html)</div>
+                <div class="browser-preview">
+                    <div class="preview-header">KARTA WYPOSAŻENIA</div>
+                    <div class="preview-form">
+                        <p>Zakon (wybierz jeden):</p>
+                        <label><input type="radio" name="zakon" checked disabled> Zakon Gryfa</label>
+                        <label><input type="radio" name="zakon" disabled> Zakon Lwa</label>
+
+                        <p>Ekwipunek (wielokrotny wybór):</p>
+                        <label><input type="checkbox" checked disabled> Miecz Dwuręczny</label>
+                        <label><input type="checkbox" disabled> Kusza</label>
+                        <label><input type="checkbox" checked disabled> Tarcza</label>
+
+                        <p>Raport taktyczny:</p>
+                        <textarea rows="3" disabled>Mury zostały wzmocnione. Czekamy na rozkazy!</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="srodkowy-div">
+            <h2>Lekcja 8: Mechanizmy Zamkowe (Zaawansowane Formularze)</h2>
+            
+            <p>W Lekcji 5 zbudowaliśmy podstawowy formularz dla rekrutów z polem tekstowym i listą. Dziś poszerzymy zbrojownię o nowe, bardziej precyzyjne mechanizmy interakcji, które pozwolą zbierać szczegółowe raporty wywiadowcze.</p>
+
+            <h3>Nowe elementy interaktywne:</h3>
+            <ul>
+                <li><strong>&lt;input type="radio"&gt;</strong> - Przełącznik opcji. Użytkownik może wybrać tylko *jedną* opcję z grupy (grupa musi mieć ten sam atrybut <code>name</code>).</li>
+                <li><strong>&lt;input type="checkbox"&gt;</strong> - Pole wielokrotnego wyboru (tzw. "ptaszek"). Pozwala zaznaczyć dowolną liczbę opcji naraz.</li>
+                <li><strong>&lt;textarea&gt;</strong> - Wieloliniowe pole tekstowe, używane do wprowadzania długich wiadomości, np. raportów lub wiadomości wysyłanych przez kruki.</li>
+            </ul>
+
+            <h3>Kod źródłowy w Edytorze:</h3>
+            
+            <div class="vsc-window">
+                <div class="vsc-header">
+                    <div class="vsc-dots">
+                        <div class="vsc-dot red"></div>
+                        <div class="vsc-dot yellow"></div>
+                        <div class="vsc-dot green"></div>
+                    </div>
+                    <div class="vsc-tab">zamek.html (Wewnątrz tagu &lt;form&gt;)</div>
+                </div>
+                <div class="vsc-content">    <span class="vsc-tag">&lt;p&gt;</span>Zakon (wybierz jeden):<span class="vsc-tag">&lt;/p&gt;</span>
+    <span class="vsc-tag">&lt;label&gt;</span>
+        <span class="vsc-tag">&lt;input</span> <span class="vsc-attr">type</span>=<span class="vsc-val">"radio"</span> <span class="vsc-attr">name</span>=<span class="vsc-val">"zakon"</span> <span class="vsc-attr">value</span>=<span class="vsc-val">"gryf"</span><span class="vsc-tag">&gt;</span> Zakon Gryfa
+    <span class="vsc-tag">&lt;/label&gt;</span>
+    <span class="vsc-tag">&lt;label&gt;</span>
+        <span class="vsc-tag">&lt;input</span> <span class="vsc-attr">type</span>=<span class="vsc-val">"radio"</span> <span class="vsc-attr">name</span>=<span class="vsc-val">"zakon"</span> <span class="vsc-attr">value</span>=<span class="vsc-val">"lew"</span><span class="vsc-tag">&gt;</span> Zakon Lwa
+    <span class="vsc-tag">&lt;/label&gt;</span>
+
+    <span class="vsc-tag">&lt;p&gt;</span>Ekwipunek (wielokrotny wybór):<span class="vsc-tag">&lt;/p&gt;</span>
+    <span class="vsc-tag">&lt;label&gt;</span>
+        <span class="vsc-tag">&lt;input</span> <span class="vsc-attr">type</span>=<span class="vsc-val">"checkbox"</span> <span class="vsc-attr">name</span>=<span class="vsc-val">"bron"</span> <span class="vsc-attr">value</span>=<span class="vsc-val">"miecz"</span><span class="vsc-tag">&gt;</span> Miecz Dwuręczny
+    <span class="vsc-tag">&lt;/label&gt;</span>
+    <span class="vsc-tag">&lt;label&gt;</span>
+        <span class="vsc-tag">&lt;input</span> <span class="vsc-attr">type</span>=<span class="vsc-val">"checkbox"</span> <span class="vsc-attr">name</span>=<span class="vsc-val">"bron"</span> <span class="vsc-attr">value</span>=<span class="vsc-val">"tarcza"</span><span class="vsc-tag">&gt;</span> Tarcza
+    <span class="vsc-tag">&lt;/label&gt;</span>
+
+    <span class="vsc-tag">&lt;p&gt;</span>Raport taktyczny:<span class="vsc-tag">&lt;/p&gt;</span>
+    <span class="vsc-tag">&lt;textarea</span> <span class="vsc-attr">name</span>=<span class="vsc-val">"raport"</span> <span class="vsc-attr">rows</span>=<span class="vsc-val">"4"</span> <span class="vsc-attr">placeholder</span>=<span class="vsc-val">"Wpisz treść wiadomości..."</span><span class="vsc-tag">&gt;</span><span class="vsc-tag">&lt;/textarea&gt;</span></div>
+            </div>
+
+            <div class="sekcja-cwiczen">
+                <h3>Zadania Architekta:</h3>
+                
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 1: Przysięga wierności (Radio)</h4>
+                    <p>Dodaj dwa pola typu <code>radio</code> w swoim formularzu rekrutacyjnym. Upewnij się, że oba mają dokładnie ten sam atrybut <code>name="zakon"</code>, w przeciwnym razie użytkownik będzie mógł zaznaczyć obie frakcje na raz!</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 2: Przydział broni (Checkbox)</h4>
+                    <p>Skonfiguruj kilka pól typu <code>checkbox</code>, pozwalających na wybór ekwipunku. Pamiętaj, aby tekst wyboru owinąć w znacznik <code>&lt;label&gt;</code>, dzięki czemu kliknięcie w sam tekst również zaznaczy kwadracik.</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 3: Komunikacja za pomocą kruków (Textarea)</h4>
+                    <p>Na dole formularza utwórz pole <code>&lt;textarea&gt;</code>. Użyj atrybutu <code>rows="4"</code>, aby domyślnie ustalić jego wysokość na 4 linijki tekstu.</p>
+                </div>
+            </div>
+
+            <div id="nawigacja-lekcji" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <a href="lekcja7.html" class="btn-lekcja">⬅ Lekcja 7</a>
+                <a href="lekcja9.html" class="btn-lekcja">Lekcja 9 ➡</a>
+            </div>
+        </div>
+
+        <div class="boczna-kolumna">
+            <div class="box">
+                <div class="box-title">Stan Budowy</div>
+                <p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">Faza 8: Infrastruktura wymiany informacji ukończona. Zamek jest gotowy do zbierania zaawansowanych raportów oraz zarządzania ekwipunkiem rekrutów.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Księga Architekta</div>
+                <p>
+Księga Architekta opisuje formularze jako system komunikacji między rekrutem a zamkiem, w którym każdy element wejściowy pełni inną rolę. Dzięki nowym mechanizmom możliwe jest precyzyjne zbieranie danych, od wyboru zakonu aż po szczegółowe raporty taktyczne przesyłane przez kruki.
+</p>
+
+<p>
+Najważniejsze elementy formularza:
+</p>
+
+<ul>
+    <li><strong>&lt;input type="radio"&gt;</strong> – wybór jednej opcji z wielu (np. przynależność do zakonu)</li>
+    <li><strong>&lt;input type="checkbox"&gt;</strong> – możliwość zaznaczenia wielu elementów jednocześnie</li>
+    <li><strong>&lt;textarea&gt;</strong> – wieloliniowe pole tekstowe do długich wiadomości i raportów</li>
+</ul>
+
+<p>
+Mechanika działania formularza przypomina system decyzyjny w zamku:
+</p>
+
+<ul>
+    <li>radio działa jak przysięga – wybierasz tylko jedną drogę i nie możesz jej podzielić</li>
+    <li>checkbox działa jak ekwipunek – możesz zabrać wiele rzeczy naraz</li>
+    <li>textarea działa jak pergamin – pozwala zapisać dowolnie długą treść</li>
+</ul>
+
+<p>
+Każdy element formularza pełni inną funkcję, ale razem tworzą spójny system zbierania informacji, który pozwala zamkowi podejmować decyzje na podstawie raportów dostarczanych przez rekrutów.
+</p>
+        </div>
+    </main>
+
+    <footer class="stopka-kursu">
+        &copy; Twoje imię i nazwisko. Wszelkie prawa zastrzeżone.
+    </footer>
+
+</body>
+</html>

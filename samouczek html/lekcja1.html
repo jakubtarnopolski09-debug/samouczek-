@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samouczek HTML5 & CSS3 - Lekcja 1</title>
+    <style>
+        body {
+            background-color: #f4ecd8;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header.panel-kursu {
+            background-color: #4a3525;
+            border-bottom: 3px double #d4af37;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } 
+
+        .panel-kursu ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .panel-kursu ul li a {
+            display: block;
+            background-color: #d4af37;
+            color: #2b1d11;
+            padding: 6px 12px;
+            border: 1px solid #4a3525;
+            border-radius: 3px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .panel-kursu ul li a:hover, .panel-kursu ul li a.active {
+            background-color: #2b1d11;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+
+        #kontener-glowny {
+            display: flex;
+            flex: 1;
+        }
+
+        #srodkowy-div {
+            width: 50%;
+            background-color: #faf4e8;
+            padding: 30px;
+            box-sizing: border-box;
+            border-left: 1px solid #4a3525;
+            border-right: 1px solid #4a3525;
+        }
+
+        .boczna-kolumna {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px dashed #4a3525;
+            margin: 10px;
+            background-color: #ebdcb9;
+            color: #4a3525;
+            font-weight: bold;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        .box-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #4a3525;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #a62c2c;
+        }
+
+        footer.stopka-kursu {
+            background-color: #4a3525;
+            color: #d4af37;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 3px double #d4af37;
+            font-size: 14px;
+        }
+
+        .browser-preview {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Times New Roman', Times, serif;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        .preview-header { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 5px; font-weight: bold; }
+        .preview-main { min-height: 80px; padding: 5px 0; }
+        .preview-footer { border-top: 1px solid #ccc; padding-top: 5px; font-size: 12px; color: #555; }
+
+        .vsc-window {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .vsc-header {
+            background-color: #323233;
+            padding: 8px 12px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .vsc-dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .vsc-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .vsc-dot.red { background-color: #ff5f56; }
+        .vsc-dot.yellow { background-color: #ffbd2e; }
+        .vsc-dot.green { background-color: #27c93f; }
+        .vsc-tab { color: #9cdcfe; font-size: 12px; }
+        .vsc-content { padding: 15px; line-height: 1.5; white-space: pre; overflow-x: auto; }
+        .vsc-tag { color: #569cd6; }
+        .vsc-attr { color: #9cdcfe; }
+        .vsc-val { color: #ce9178; }
+
+        .sekcja-cwiczen {
+            margin-top: 40px;
+            background-color: #ebdcb9;
+            border: 2px solid #4a3525;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .cwiczenie {
+            background-color: #faf4e8;
+            border: 1px solid #4a3525;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .cwiczenie h4 { margin: 0 0 5px 0; color: #a62c2c; }
+        .cwiczenie p { margin: 0; font-size: 14px; }
+
+        .btn-lekcja { display: inline-block; background: #4a3525; color: #d4af37; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header class="panel-kursu">
+        <nav>
+            <ul>
+                <li><a href="lekcja1.html" class="active">Lekcja 1</a></li>
+                <li><a href="lekcja2.html">Lekcja 2</a></li>
+                <li><a href="lekcja3.html">Lekcja 3</a></li>
+                <li><a href="lekcja4.html">Lekcja 4</a></li>
+                <li><a href="lekcja5.html">Lekcja 5</a></li>
+                <li><a href="lekcja6.html">Lekcja 6</a></li>
+                <li><a href="lekcja7.html">Lekcja 7</a></li>
+                <li><a href="lekcja8.html">Lekcja 8</a></li>
+                <li><a href="lekcja9.html">Lekcja 9</a></li>
+                <li><a href="lekcja10.html">Lekcja 10</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="kontener-glowny">
+        
+        <div class="boczna-kolumna">
+            <div class="box" style="height: 100%;">
+                <div class="box-title">Efekt w Przeglądarce (zamek.html)</div>
+                <div class="browser-preview">
+                    <div class="preview-header">
+                        [Górny panel nawigacyjny - tu powstanie menu]
+                    </div>
+                    <div class="preview-main">
+                        [Główny obszar warowni - tu powstanie Sala Tronowa i baszty]
+                    </div>
+                    <div class="preview-footer">
+                        © 2026 Twoje imię i nazwisko. Projekt Warowni HTML5 & CSS3 ukończony.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="srodkowy-div">
+            <h2>Lekcja 1: Kamień węgielny i zarys granic (Struktura dokumentu)</h2>
+            
+            <p>Każda wielka budowla wymaga planu i oczyszczenia terenu. W świecie stron internetowych takim fundamentem jest zadeklarowanie typu dokumentu oraz wyznaczenie granic, w których wznosić będziemy mury naszej twierdzy. Wszystko zaczyna się od pliku <code>zamek.html</code>.</p>
+            
+            <h3>Trzy główne bastiony dokumentu:</h3>
+            <ul>
+                <li><strong>&lt;!DOCTYPE html&gt;</strong> - Znak dla przeglądarki, że wkracza na teren nowoczesnego rzemiosła HTML5.</li>
+                <li><strong>&lt;html lang="pl"&gt;</strong> - Granica całego królestwa, określająca mowę jego mieszkańców.</li>
+                <li><strong>&lt;header&gt;, &lt;main&gt;, &lt;footer&gt;</strong> - Trzy podstawowe strefy strategiczne: Panel Sterowania (Góra), Główny Dziedziniec (Środek) oraz Kronika/Prawa Autorskie (Dół).</li>
+            </ul>
+
+            <h3>Kod źródłowy w Edytorze:</h3>
+            
+            <div class="vsc-window">
+                <div class="vsc-header">
+                    <div class="vsc-dots">
+                        <div class="vsc-dot red"></div>
+                        <div class="vsc-dot yellow"></div>
+                        <div class="vsc-dot green"></div>
+                    </div>
+                    <div class="vsc-tab">zamek.html</div>
+                </div>
+                <div class="vsc-content"><span class="vsc-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="vsc-tag">&lt;html</span> <span class="vsc-attr">lang</span>=<span class="vsc-val">"pl"</span><span class="vsc-tag">&gt;</span>
+<span class="vsc-tag">&lt;head&gt;</span>
+    <span class="vsc-tag">&lt;meta</span> <span class="vsc-attr">charset</span>=<span class="vsc-val">"UTF-8"</span><span class="vsc-tag">&gt;</span>
+    <span class="vsc-tag">&lt;title&gt;</span>Wielka Sala Tronowa<span class="vsc-tag">&lt;/title&gt;</span>
+<span class="vsc-tag">&lt;/head&gt;</span>
+<span class="vsc-tag">&lt;body&gt;</span>
+    <span class="vsc-tag">&lt;header&gt;</span>[Górny panel nawigacyjny - tu powstanie menu]<span class="vsc-tag">&lt;/header&gt;</span>
+    <span class="vsc-tag">&lt;main&gt;</span>[Główny obszar warowni - tu powstanie Sala Tronowa i baszty]<span class="vsc-tag">&lt;/main&gt;</span>
+    <span class="vsc-tag">&lt;footer&gt;</span>&amp;copy; 2026 Twoje imię i nazwisko. Projekt Warowni HTML5 &amp;amp; CSS3 ukończony.<span class="vsc-tag">&lt;/footer&gt;</span>
+<span class="vsc-tag">&lt;/body&gt;</span>
+<span class="vsc-tag">&lt;/html&gt;</span></div>
+            </div>
+
+            <div class="sekcja-cwiczen">
+                <h3>Zadania dla Młodego Architekta:</h3>
+                
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 1: Postawienie znaku granicznego</h4>
+                    <p>Utwórz nowy plik o nazwie <code>zamek.html</code> i rozpocznij go od zadeklarowania standardu <code>&lt;!DOCTYPE html&gt;</code>.</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 2: Wyznaczenie stref semantycznych</h4>
+                    <p>Wewnątrz sekcji <code>&lt;body&gt;</code> stwórz trzy osobne poziomy: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code> oraz <code>&lt;footer&gt;</code>.</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 3: Pieczęć Królewska w stopce</h4>
+                    <p>Wewnątrz elementu <code>&lt;footer&gt;</code> wpisz tekst praw autorskich: <code>&amp;copy; 2026 Twoje imię i nazwisko. Projekt Warowni HTML5 &amp;amp; CSS3 ukończony.</code></p>
+                </div>
+            </div>
+
+            <div id="nawigacja-lekcji" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <a href="index.html" class="btn-lekcja">⬅ Strona glowna</a>
+                <a href="lekcja2.html" class="btn-lekcja">Lekcja 2 ➡</a>
+            </div>
+        </div>
+
+        <div class="boczna-kolumna">
+            <div class="box">
+                <div class="box-title">Stan Budowy</div>
+                <p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">Faza 1: Fundamenty wylane. Wyznaczono strefę górną, środkową i dolną witryny.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Księga Architekta</div>
+               <p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">
+    Zapis <code>&amp;copy;</code> to tzw. encja HTML. Przeglądarka zamieni ten ciąg znaków w oficjalny symbol praw autorskich: <strong>©</strong>.
+</p>
+
+<br>
+
+<p style="font-size: 13px; font-weight: normal; text-align: left;">
+    Aby utworzyć swoją pierwszą stronę internetową, pamiętaj o zapisaniu pliku z rozszerzeniem
+    <code>.html</code>, na przykład <code>moja_strona.html</code>. Dzięki temu przeglądarka rozpozna go jako stronę internetową i poprawnie wyświetli jego zawartość.
+</p>
+
+<p style="font-size: 13px; font-weight: normal; text-align: left;">
+    Do pisania kodu warto korzystać z dedykowanych edytorów tekstu. Najpopularniejsze z nich to:
+</p>
+
+<ul style="font-size: 13px; font-weight: normal;">
+    <li><strong>Visual Studio Code</strong> – nowoczesny edytor z ogromną liczbą dodatków i funkcji.</li>
+    <li><strong>Notepad++</strong> – lekki i prosty edytor idealny dla początkujących.</li>
+    <li><strong>Sublime Text</strong> – szybki edytor ceniony przez wielu programistów.</li>
+</ul>
+
+<p style="font-size: 13px; font-weight: normal; text-align: left;">
+    Po napisaniu kodu warto sprawdzić jego poprawność za pomocą
+    <strong>Walidatora HTML (Validator)</strong>. Narzędzie to pomaga wykryć błędy,
+    takie jak brakujące znaczniki, niepoprawnie zagnieżdżone elementy czy literówki w kodzie.
+</p>
+
+<p style="font-size: 13px; font-weight: normal; text-align: left;">
+    Przydatnym nawykiem jest również regularne testowanie strony w przeglądarce po każdej większej zmianie.
+    Dzięki temu szybciej zauważysz błędy i łatwiej będzie je naprawić.
+</p>
+
+<p style="font-size: 13px; font-weight: normal; text-align: left;">
+    W dalszej nauce mogą pomóc także:
+</p>
+
+<ul style="font-size: 13px; font-weight: normal;">
+    <li><strong>Narzędzia programistyczne przeglądarki (F12)</strong> – pozwalają analizować kod HTML i CSS na żywo.</li>
+    <li><strong>MDN Web Docs</strong> – jedna z najlepszych dokumentacji dotyczących HTML, CSS i JavaScript.</li>
+    <li><strong>Generator kolorów i palet</strong> – pomaga dobierać estetyczne kolory dla stron internetowych.</li>
+    <li><strong>Formatery kodu</strong> – automatycznie porządkują kod, poprawiając jego czytelność.</li>
+</ul>
+
+<p style="font-size: 13px; font-weight: normal; text-align: left;">
+    Pamiętaj, że nawet doświadczeni programiści korzystają z dokumentacji, walidatorów i narzędzi pomocniczych.
+    Nie musisz pamiętać wszystkiego na pamięć – najważniejsze jest zrozumienie podstaw i regularna praktyka.
+</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="stopka-kursu">
+        &copy; Jakub Tarnopolski. Wszelkie prawa zastrzeżone.
+    </footer>
+
+</body>
+</html>

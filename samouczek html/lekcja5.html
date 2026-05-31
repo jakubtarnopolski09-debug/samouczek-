@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samouczek HTML5 & CSS3 - Lekcja 5</title>
+    <style>
+        body {
+            background-color: #f4ecd8;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header.panel-kursu {
+            background-color: #4a3525;
+            border-bottom: 3px double #d4af37;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } 
+
+        .panel-kursu ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .panel-kursu ul li a {
+            display: block;
+            background-color: #d4af37;
+            color: #2b1d11;
+            padding: 6px 12px;
+            border: 1px solid #4a3525;
+            border-radius: 3px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .panel-kursu ul li a:hover, .panel-kursu ul li a.active {
+            background-color: #2b1d11;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+
+        #kontener-glowny {
+            display: flex;
+            flex: 1;
+        }
+
+        #srodkowy-div {
+            width: 50%;
+            background-color: #faf4e8;
+            padding: 30px;
+            box-sizing: border-box;
+            border-left: 1px solid #4a3525;
+            border-right: 1px solid #4a3525;
+        }
+
+        .boczna-kolumna {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px dashed #4a3525;
+            margin: 10px;
+            background-color: #ebdcb9;
+            color: #4a3525;
+            font-weight: bold;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        .box-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #4a3525;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #a62c2c;
+        }
+
+        footer.stopka-kursu {
+            background-color: #4a3525;
+            color: #d4af37;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 3px double #d4af37;
+            font-size: 14px;
+        }
+
+        .browser-preview {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Times New Roman', Times, serif;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+            font-weight: normal;
+            font-size: 14px;
+            overflow-y: auto;
+        }
+
+        .preview-header { border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 5px; }
+        .preview-nav { display: flex; gap: 10px; font-size: 11px; font-weight: bold; }
+        .preview-nav a { color: blue; text-decoration: underline; }
+        .preview-main { min-height: 120px; }
+        .preview-col { border: 1px dotted #aaa; margin-bottom: 8px; padding: 5px; font-size: 11px; }
+        .preview-col h2 { font-size: 12px; margin: 2px 0; color: #a62c2c; text-align: center; }
+        
+        .preview-form { display: flex; flex-direction: column; gap: 4px; background: #f9f9f9; padding: 6px; border: 1px solid #ccc; font-family: sans-serif; font-size: 11px; }
+        .preview-form label { font-weight: bold; }
+        .preview-form input[type="text"], .preview-form select { width: 100%; box-sizing: border-box; font-size: 10px; padding: 2px; }
+        .preview-form input[type="submit"] { background: #4a3525; color: white; border: none; padding: 4px; font-weight: bold; cursor: pointer; }
+
+        .vsc-window {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .vsc-header {
+            background-color: #323233;
+            padding: 8px 12px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .vsc-dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .vsc-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .vsc-dot.red { background-color: #ff5f56; }
+        .vsc-dot.yellow { background-color: #ffbd2e; }
+        .vsc-dot.green { background-color: #27c93f; }
+        .vsc-tab { color: #9cdcfe; font-size: 12px; }
+        .vsc-content { padding: 15px; line-height: 1.5; white-space: pre; overflow-x: auto; }
+        .vsc-tag { color: #569cd6; }
+        .vsc-attr { color: #9cdcfe; }
+        .vsc-val { color: #ce9178; }
+
+        .sekcja-cwiczen {
+            margin-top: 40px;
+            background-color: #ebdcb9;
+            border: 2px solid #4a3525;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .cwiczenie {
+            background-color: #faf4e8;
+            border: 1px solid #4a3525;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .cwiczenie h4 { margin: 0 0 5px 0; color: #a62c2c; }
+        .cwiczenie p { margin: 0; font-size: 14px; }
+
+        .btn-lekcja { display: inline-block; background: #4a3525; color: #d4af37; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header class="panel-kursu">
+        <nav>
+            <ul>
+                <li><a href="lekcja1.html">Lekcja 1</a></li>
+                <li><a href="lekcja2.html">Lekcja 2</a></li>
+                <li><a href="lekcja3.html">Lekcja 3</a></li>
+                <li><a href="lekcja4.html">Lekcja 4</a></li>
+                <li><a href="lekcja5.html" class="active">Lekcja 5</a></li>
+                <li><a href="lekcja6.html">Lekcja 6</a></li>
+                <li><a href="lekcja7.html">Lekcja 7</a></li>
+                <li><a href="lekcja8.html">Lekcja 8</a></li>
+                <li><a href="lekcja9.html">Lekcja 9</a></li>
+                <li><a href="lekcja10.html">Lekcja 10</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="kontener-glowny">
+        
+        <div class="boczna-kolumna">
+            <div class="box" style="height: 100%;">
+                <div class="box-title">Efekt w Przeglądarce (zamek.html)</div>
+                <div class="browser-preview">
+                    <div class="preview-header">
+                        <div class="preview-nav">
+                            <a href="#dziedziniec">Dziedziniec</a>
+                            <a href="#skarbiec">Skarbiec</a>
+                            <a href="#koszary">Koszary</a>
+                        </div>
+                    </div>
+                    <div class="preview-main">
+                        <div style="flex: 1;"></div>
+                        <div class="preview-col" style="width: 100%; box-sizing: border-box;">
+                            <h2>Zaciąg do Armii</h2>
+                            <div class="preview-form">
+                                <label>Imię / Przydomek:</label>
+                                <input type="text" placeholder="np. Gall Anonim" disabled>
+                                <label>Profesja militarna:</label>
+                                <select disabled><option>Łucznik</option></select>
+                                <input type="submit" value="Wyślij Gryfa" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-footer">
+                        © 2026 Twoje imię i nazwisko. Projekt Warowni HTML5 & CSS3 ukończony.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="srodkowy-div">
+            <h2>Lekcja 5: Pobór Rekrutów (Formularze, Pola tekstowe i Selekcja)</h2>
+            
+            <p>Żaden król nie utrzyma potęgi bez silnej armii. Aby dać poddanym możliwość zgłoszenia się do gwardii, w prawej kolumnie bocznej wybudujemy formularz rekrutacyjny. Użyjemy znaczników interaktywnych do przesyłania danych użytkownika.</p>
+
+            <h3>Struktura i elementy formularza:</h3>
+            <ul>
+                <li><strong>&lt;form&gt;</strong> - Główny kontener zbierający dane. Atrybut <code>action="#"</code> wskazuje miejsce docelowe wysyłki (na razie zostawiamy pusty odnośnik).</li>
+                <li><strong>&lt;label&gt;</strong> - Etykieta tekstowa opisująca pole. Powiązana z polem za pomocą atrybutu <code>for</code> odpowiadającemu <code>id</code> kontrolki.</li>
+                <li><strong>&lt;input type="text"&gt;</strong> - Jednoliniowe pole tekstowe, w którym rekrut wpisze swoje imię lub przydomek. Atrybut <code>placeholder</code> wyświetla podpowiedź w tle.</li>
+                <li><strong>&lt;select&gt; oraz &lt;option&gt;</strong> - Rozwijana lista wyboru. Pozwala wybrać jedną z zamkniętych opcji (profesji wojskowych).</li>
+                <li><strong>&lt;input type="submit"&gt;</strong> - Przycisk zatwierdzający, który wysyła kompletny formularz do bazy zamkowej.</li>
+            </ul>
+
+            <h3>Kod źródłowy w Edytorze:</h3>
+            
+            <div class="vsc-window">
+                <div class="vsc-header">
+                    <div class="vsc-dots">
+                        <div class="vsc-dot red"></div>
+                        <div class="vsc-dot yellow"></div>
+                        <div class="vsc-dot green"></div>
+                    </div>
+                    <div class="vsc-tab">zamek.html</div>
+                </div>
+                <div class="vsc-content"><span class="vsc-tag">&lt;div</span> <span class="vsc-attr">class</span>=<span class="vsc-val">"kolumna-prawa"</span><span class="vsc-tag">&gt;</span>
+    <span class="vsc-tag">&lt;div</span> <span class="vsc-attr">class</span>=<span class="vsc-val">"komnata-karta"</span><span class="vsc-tag">&gt;</span>
+        <span class="vsc-tag">&lt;h2&gt;</span>Zaciąg do Armii<span class="vsc-tag">&lt;/h2&gt;</span>
+        <span class="vsc-tag">&lt;form</span> <span class="vsc-attr">action</span>=<span class="vsc-val">"#"</span> <span class="vsc-attr">method</span>=<span class="vsc-val">"post"</span><span class="vsc-tag">&gt;</span>
+            <span class="vsc-tag">&lt;label</span> <span class="vsc-attr">for</span>=<span class="vsc-val">"rekrut-imie"</span><span class="vsc-tag">&gt;</span>Imię / Przydomek:<span class="vsc-tag">&lt;/label&gt;</span>
+            <span class="vsc-tag">&lt;input</span> <span class="vsc-attr">type</span>=<span class="vsc-val">"text"</span> <span class="vsc-attr">id</span>=<span class="vsc-val">"rekrut-imie"</span> <span class="vsc-attr">name</span>=<span class="vsc-val">"imie"</span> <span class="vsc-attr">placeholder</span>=<span class="vsc-val">"np. Gall Anonim"</span> <span class="vsc-attr">required</span><span class="vsc-tag">&gt;</span>
+
+            <span class="vsc-tag">&lt;label</span> <span class="vsc-attr">for</span>=<span class="vsc-val">"rekrut-profesja"</span><span class="vsc-tag">&gt;</span>Profesja militarna:<span class="vsc-tag">&lt;/label&gt;</span>
+            <span class="vsc-tag">&lt;select</span> <span class="vsc-attr">id</span>=<span class="vsc-val">"rekrut-profesja"</span> <span class="vsc-attr">name</span>=<span class="vsc-val">"profesja"</span><span class="vsc-tag">&gt;</span>
+                <span class="vsc-tag">&lt;option</span> <span class="vsc-attr">value</span>=<span class="vsc-val">"lucznik"</span><span class="vsc-tag">&gt;</span>Łucznik<span class="vsc-tag">&lt;/option&gt;</span>
+                <span class="vsc-tag">&lt;option</span> <span class="vsc-attr">value</span>=<span class="vsc-val">"rycerz"</span><span class="vsc-tag">&gt;</span>Rycerz<span class="vsc-tag">&lt;/option&gt;</span>
+                <span class="vsc-tag">&lt;option</span> <span class="vsc-attr">value</span>=<span class="vsc-val">"mag"</span><span class="vsc-tag">&gt;</span>Mag Bitewny<span class="vsc-tag">&lt;/option&gt;</span>
+            <span class="vsc-tag">&lt;/select&gt;</span>
+
+            <span class="vsc-tag">&lt;input</span> <span class="vsc-attr">type</span>=<span class="vsc-val">"submit"</span> <span class="vsc-attr">value</span>=<span class="vsc-val">"Wyślij Gryfa"</span><span class="vsc-tag">&gt;</span>
+        <span class="vsc-tag">&lt;/form&gt;</span>
+    <span class="vsc-tag">&lt;/div&gt;</span>
+<span class="vsc-tag">&lt;/div&gt;</span></div>
+            </div>
+
+            <div class="sekcja-cwiczen">
+                <h3>Zadania dla Młodego Architekta:</h3>
+                
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 1: Postawienie punktu poboru</h4>
+                    <p>Odszukaj w kodzie <code>&lt;div class="komnata-karta"&gt;</code> powiązaną z Zaciągiem do Armii. Wewnątrz niej utwórz znacznik otwierający i zamykający <code>&lt;form&gt;</code>.</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 2: Przyjmowanie tożsamości rekruta</h4>
+                    <p>Dodaj element <code>&lt;label&gt;</code>, a bezpośrednio pod nim <code>&lt;input type="text"&gt;</code>. Nadaj im identyczne powiązanie za pomocą <code>id</code> oraz atrybutu <code>for</code>.</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 3: Tworzenie gildii wyboru i pieczęci wysyłki</h4>
+                    <p>Zaimplementuj znacznik <code>&lt;select&gt;</code> zawierający trzy opcje (<code>&lt;option&gt;</code>). Na samym dole dodaj przycisk <code>&lt;input type="submit"&gt;</code>, który domknie proces rekrutacyjny.</p>
+                </div>
+            </div>
+
+            <div id="nawigacja-lekcji" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <a href="lekcja4.html" class="btn-lekcja">⬅ Lekcja 4</a>
+                <a href="lekcja6.html" class="btn-lekcja">Lekcja 6 ➡</a>
+            </div>
+        </div>
+
+        <div class="boczna-kolumna">
+            <div class="box">
+                <div class="box-title">Stan Budowy</div>
+                <p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">Faza 5: Punkty poborowe otwarte. Struktura formularza jest w 100% gotowa do przyjmowania wpisów tekstowych od użytkowników.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Księga Architekta</div>
+              <p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">
+    Atrybut <code>required</code> dodany do pola tekstowego to wbudowany mechanizm walidacji HTML5. Sprawia on, że przeglądarka zablokuje próbę wysłania pustego formularza bez konieczności używania JavaScript.
+</p>
+
+<br>
+
+<p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">
+    Formularze są jednym z najważniejszych elementów współczesnych stron internetowych. To właśnie dzięki nim użytkownicy mogą logować się do kont, wysyłać wiadomości, składać zamówienia oraz wypełniać ankiety.
+</p>
+
+<br>
+
+<p style="font-size: 13px; font-weight: normal; text-align: left; margin: 0;">
+    Najczęściej używane elementy formularzy:
+</p>
+
+<ul style="font-size: 13px; font-weight: normal; margin-top: 8px;">
+    <li><code>&lt;input type="text"&gt;</code> – pole do wpisywania tekstu.</li>
+    <li><code>&lt;input type="email"&gt;</code> – pole przeznaczone dla adresów e-mail.</li>
+    <li><code>&lt;input type="password"&gt;</code> – pole ukrywające wpisywane hasło.</li>
+    <li><code>&lt;select&gt;</code> – rozwijana lista wyboru.</li>
+    <li><code>&lt;textarea&gt;</code> – pole do wpisywania dłuższych wiadomości.</li>
+    <li><code>&lt;input type="submit"&gt;</code> – przycisk wysyłający formularz.</li>
+</ul>
+
+<br>
+
+<p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">
+    Ciekawostka: zanim formularz zostanie wysłany na serwer, przeglądarka może samodzielnie sprawdzić poprawność części danych. Oprócz atrybutu <code>required</code> istnieją także mechanizmy sprawdzające długość tekstu, format adresu e-mail czy zakres liczb.
+</p>
+
+<br>
+
+<p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">
+    W profesjonalnych projektach każdy formularz powinien posiadać odpowiednio opisane etykiety <code>&lt;label&gt;</code>. Ułatwia to korzystanie ze strony osobom używającym czytników ekranu oraz poprawia dostępność witryny.
+</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="stopka-kursu">
+        &copy; Twoje imię i nazwisko. Wszelkie prawa zastrzeżone.
+    </footer>
+
+</body>
+</html>

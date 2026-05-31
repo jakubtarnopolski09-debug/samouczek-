@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samouczek HTML5 & CSS3 - Lekcja 9</title>
+    <style>
+        body {
+            background-color: #f4ecd8;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header.panel-kursu {
+            background-color: #4a3525;
+            border-bottom: 3px double #d4af37;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } 
+
+        .panel-kursu ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+        }
+
+        .panel-kursu ul li a {
+            display: block;
+            background-color: #d4af37;
+            color: #2b1d11;
+            padding: 6px 12px;
+            border: 1px solid #4a3525;
+            border-radius: 3px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .panel-kursu ul li a:hover, .panel-kursu ul li a.active {
+            background-color: #2b1d11;
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+
+        #kontener-glowny {
+            display: flex;
+            flex: 1;
+        }
+
+        #srodkowy-div {
+            width: 50%;
+            background-color: #faf4e8;
+            padding: 30px;
+            box-sizing: border-box;
+            border-left: 1px solid #4a3525;
+            border-right: 1px solid #4a3525;
+        }
+
+        .boczna-kolumna {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px dashed #4a3525;
+            margin: 10px;
+            background-color: #ebdcb9;
+            color: #4a3525;
+            font-weight: bold;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        .box-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #4a3525;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #a62c2c;
+        }
+
+        footer.stopka-kursu {
+            background-color: #4a3525;
+            color: #d4af37;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 3px double #d4af37;
+            font-size: 14px;
+        }
+
+        .browser-preview {
+            background-color: #87CEEB; /* Błękitne niebo dla lepszego kontrastu flagi */
+            color: #2b1d11;
+            font-family: 'Times New Roman', Times, serif;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+            font-weight: normal;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+        }
+
+        .preview-header { 
+            border-bottom: 2px solid #2b1d11; 
+            padding-bottom: 5px; 
+            margin-bottom: 15px; 
+            text-align: center; 
+            font-size: 10px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+        }
+
+        /* --- PREVIEW CSS: MENU ROZWIJANE --- */
+        .preview-nav {
+            background-color: #4a3525;
+            padding: 5px;
+            display: flex;
+            gap: 15px;
+            position: relative;
+            z-index: 10;
+        }
+        .preview-nav-item {
+            color: #d4af37;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            padding: 5px;
+        }
+        .preview-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2b1d11;
+            border: 1px solid #d4af37;
+            min-width: 100px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .preview-nav-item:hover .preview-dropdown-content {
+            display: block;
+        }
+        .preview-dropdown-content li {
+            padding: 8px;
+            color: #f4ecd8;
+            font-size: 11px;
+            border-bottom: 1px solid #4a3525;
+        }
+        .preview-dropdown-content li:hover {
+            background-color: #a62c2c;
+        }
+
+        /* --- PREVIEW CSS: ANIMACJA FLAGI --- */
+        .preview-tower {
+            width: 60px;
+            height: 80px;
+            background-color: #5a5a5a;
+            border: 2px solid #2b1d11;
+            margin: 40px auto 0 auto;
+            position: relative;
+        }
+        .preview-flag-pole {
+            width: 4px;
+            height: 50px;
+            background-color: #2b1d11;
+            position: absolute;
+            top: -50px;
+            left: 10px;
+        }
+        .preview-flag-animated {
+            width: 40px;
+            height: 25px;
+            background-color: #a62c2c;
+            position: absolute;
+            top: 0;
+            left: 4px;
+            transform-origin: left top; /* Punkt zaczepienia animacji */
+            animation: wave 1.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(0deg) skewY(0deg); }
+            100% { transform: rotate(-15deg) skewY(-5deg); }
+        }
+
+        /* --- PREVIEW CSS: RWD SYMULACJA --- */
+        .preview-rwd-notice {
+            margin-top: auto;
+            background-color: #faf4e8;
+            border: 1px dashed #a62c2c;
+            padding: 5px;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .vsc-window {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .vsc-header {
+            background-color: #323233;
+            padding: 8px 12px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .vsc-dots {
+            display: flex;
+            gap: 6px;
+            margin-right: 15px;
+        }
+
+        .vsc-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .vsc-dot.red { background-color: #ff5f56; }
+        .vsc-dot.yellow { background-color: #ffbd2e; }
+        .vsc-dot.green { background-color: #27c93f; }
+        .vsc-tab { color: #9cdcfe; font-size: 12px; margin-right: 15px; cursor: pointer; }
+        .vsc-tab.active { font-weight: bold; border-bottom: 1px solid #007acc; }
+        .vsc-content { padding: 15px; line-height: 1.5; white-space: pre; overflow-x: auto; }
+        .vsc-tag { color: #569cd6; }
+        .vsc-css-sel { color: #d7ba7d; }
+        .vsc-css-prop { color: #9cdcfe; }
+        .vsc-css-key { color: #c586c0; }
+        .vsc-val { color: #ce9178; }
+        .vsc-comment { color: #6a9955; }
+
+        .sekcja-cwiczen {
+            margin-top: 40px;
+            background-color: #ebdcb9;
+            border: 2px solid #4a3525;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .cwiczenie {
+            background-color: #faf4e8;
+            border: 1px solid #4a3525;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .cwiczenie h4 { margin: 0 0 5px 0; color: #a62c2c; }
+        .cwiczenie p { margin: 0; font-size: 14px; }
+        
+        .btn-lekcja { display: inline-block; background: #4a3525; color: #d4af37; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header class="panel-kursu">
+        <nav>
+            <ul>
+                <li><a href="lekcja1.html">Lekcja 1</a></li>
+                <li><a href="lekcja2.html">Lekcja 2</a></li>
+                <li><a href="lekcja3.html">Lekcja 3</a></li>
+                <li><a href="lekcja4.html">Lekcja 4</a></li>
+                <li><a href="lekcja5.html">Lekcja 5</a></li>
+                <li><a href="lekcja6.html">Lekcja 6</a></li>
+                <li><a href="lekcja7.html">Lekcja 7</a></li>
+                <li><a href="lekcja8.html">Lekcja 8</a></li>
+                <li><a href="lekcja9.html" class="active">Lekcja 9</a></li>
+                <li><a href="lekcja10.html">Lekcja 10</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="kontener-glowny">
+        
+        <div class="boczna-kolumna">
+            <div class="box" style="height: 100%;">
+                <div class="box-title">Efekt w Przeglądarce</div>
+                <div class="browser-preview">
+                    <div class="preview-header">INTERAKTYWNY ZAMEK</div>
+                    
+                    <div class="preview-nav">
+                        <div class="preview-nav-item">Brama</div>
+                        <div class="preview-nav-item">Zbrojownia &#9662;
+                            <ul class="preview-dropdown-content">
+                                <li>Miecze</li>
+                                <li>Tarcze</li>
+                                <li>Łuki</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="preview-tower">
+                        <div class="preview-flag-pole">
+                            <div class="preview-flag-animated"></div>
+                        </div>
+                    </div>
+
+                    <div class="preview-rwd-notice">
+                        Rozmiar ekranu steruje układem (Media Queries aktywny)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="srodkowy-div">
+            <h2>Lekcja 9: Tchnij Życie w Zamek (Animacje, Menu i RWD)</h2>
+            
+            <p>Mury stoją, formularze działają. Czas sprawić, by zamek ożył i dostosowywał się do każdego urządzenia, z którego korzysta lord. W tej lekcji wprowadzamy trzy zaawansowane techniki: <strong>animacje CSS</strong>, <strong>rozwijane menu</strong> (Dropdown) oraz <strong>RWD</strong> (Responsive Web Design).</p>
+
+            <h3>1. Animacje (Keyframes)</h3>
+            <p>Aby flaga dumnie powiewała na wietrze, wykorzystujemy dyrektywę <code>@keyframes</code>, która definiuje stany początkowe, pośrednie i końcowe ruchu.</p>
+
+            <h3>2. Menu Rozwijane (Hover & Podlisty)</h3>
+            <p>Sekretem menu rozwijanego jest ukrycie podrzędnej listy (<code>display: none;</code>) i wyświetlenie jej (<code>display: block;</code>) dopiero, gdy myszka najedzie na element główny (pseudoklasa <code>:hover</code>).</p>
+
+            <h3>3. Responsywność (Media Queries)</h3>
+            <p>Nie każdy lord czyta raporty na wielkim pergaminie. Na małych zwojach (smartfonach) zamek musi zmienić układ z wielokolumnowego na jedno-kolumnowy przy użyciu <code>@media</code>.</p>
+
+            <h3>Kompletny Zestaw Kodów CSS:</h3>
+            
+            <div class="vsc-window">
+                <div class="vsc-header">
+                    <div class="vsc-dots">
+                        <div class="vsc-dot red"></div>
+                        <div class="vsc-dot yellow"></div>
+                        <div class="vsc-dot green"></div>
+                    </div>
+                    <div class="vsc-tab active">style.css</div>
+                </div>
+                <div class="vsc-content"><span class="vsc-comment">/* --- 1. ANIMACJA FLAGI --- */</span>
+<span class="vsc-css-key">@keyframes</span> powiewanie {
+    <span class="vsc-val">0%</span> { <span class="vsc-css-prop">transform</span>: <span class="vsc-val">rotate(0deg)</span>; }
+    <span class="vsc-val">100%</span> { <span class="vsc-css-prop">transform</span>: <span class="vsc-val">rotate(-15deg) skewY(-5deg)</span>; }
+}
+
+<span class="vsc-css-sel">.sztandar-animowany</span> {
+    <span class="vsc-css-prop">transform-origin</span>: <span class="vsc-val">left top</span>; <span class="vsc-comment">/* Punkt zaczepienia (drzewce) */</span>
+    <span class="vsc-css-prop">animation</span>: <span class="vsc-val">powiewanie 1.5s infinite alternate ease-in-out</span>;
+}
+
+<span class="vsc-comment">/* --- 2. MENU ROZWIJANE --- */</span>
+<span class="vsc-css-sel">.podmenu</span> {
+    <span class="vsc-css-prop">display</span>: <span class="vsc-val">none</span>; <span class="vsc-comment">/* Domyślnie ukryte */</span>
+    <span class="vsc-css-prop">position</span>: <span class="vsc-val">absolute</span>;
+    <span class="vsc-css-prop">background-color</span>: <span class="vsc-val">#2b1d11</span>;
+}
+
+<span class="vsc-css-sel">.element-menu:hover .podmenu</span> {
+    <span class="vsc-css-prop">display</span>: <span class="vsc-val">block</span>; <span class="vsc-comment">/* Pokaż gdy myszka nad .element-menu */</span>
+}
+
+<span class="vsc-comment">/* --- 3. RESPONSIVITY (RWD) --- */</span>
+<span class="vsc-css-key">@media</span> <span class="vsc-val">(max-width: 768px)</span> {
+    <span class="vsc-css-sel">.uklad-zamku</span> {
+        <span class="vsc-css-prop">flex-direction</span>: <span class="vsc-val">column</span>; <span class="vsc-comment">/* Kolumny układają się jedna pod drugą */</span>
+        <span class="vsc-css-prop">width</span>: <span class="vsc-val">100%</span>;
+    }
+}</div>
+            </div>
+
+            <div class="sekcja-cwiczen">
+                <h3>Zadania Architekta:</h3>
+                
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 1: Wpraw flagę w ruch</h4>
+                    <p>Skopiuj dyrektywę <code>@keyframes</code> do swojego arkusza CSS, a następnie dodaj właściwość <code>animation</code> do klasy swojej flagi wywieszonej w poprzedniej lekcji. Punkt <code>transform-origin: left top;</code> zapobiegnie "odrywaniu" się flagi od masztu.</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 2: Ukryta zbrojownia</h4>
+                    <p>Stwórz w HTML listę <code>&lt;ul&gt;</code>, a w jednym z <code>&lt;li&gt;</code> zagnieźdź kolejną listę z klasą <code>.podmenu</code>. Wykorzystaj podany wyżej kod CSS ze struktury <code>:hover</code>, aby podlista pokazywała się dopiero po najechaniu kursorem.</p>
+                </div>
+
+                <div class="cwiczenie">
+                    <h4>Ćwiczenie 3: Przygotowanie na mobilnych gońców (RWD)</h4>
+                    <p>Na samym dole pliku CSS dodaj sekcję <code>@media (max-width: 768px)</code>. Wewnątrz niej zmień właściwości swojego głównego kontenera Flexbox, nadając mu <code>flex-direction: column;</code>. Zmniejsz szerokość okna przeglądarki, aby przetestować efekt punktu załamania (breakpoint).</p>
+                </div>
+            </div>
+
+            <div id="nawigacja-lekcji" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <a href="lekcja8.html" class="btn-lekcja">⬅ Lekcja 8</a>
+                <a href="lekcja10.html" class="btn-lekcja">Lekcja 10 ➡</a>
+            </div>
+        </div>
+
+        <div class="boczna-kolumna">
+            <div class="box">
+                <div class="box-title">Stan Budowy</div>
+                <p style="font-size: 13px; font-weight: normal; text-align: center; margin: 0;">Faza 9: Zamek ożywiony i zmodernizowany. Flagi powiewają na wieżach, ukryte schowki działają płynnie, a fortyfikacje dostosowują się do wielkości ekranu mobilnego.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Księga Architekta</div>
+               <p>
+Księga Architekta opisuje tę fazę rozwoju zamku jako moment, w którym statyczna konstrukcja zaczyna reagować na czas, ruch i urządzenie użytkownika. CSS przestaje być tylko układem – staje się systemem zachowań: animuje elementy, ukrywa sekrety i zmienia strukturę w zależności od wielkości ekranu.
+</p>
+
+<p>
+Trzy filary ożywienia zamku:
+</p>
+
+<ul>
+    <li><strong>Animacje (@keyframes)</strong> – definiują ruch elementów w czasie, tworząc płynne przejścia między stanami</li>
+    <li><strong>Menu rozwijane (:hover)</strong> – pozwala ukrywać i odkrywać sekcje interfejsu w zależności od interakcji użytkownika</li>
+    <li><strong>Media Queries (@media)</strong> – dostosowują układ zamku do różnych rozmiarów ekranów</li>
+</ul>
+
+<p>
+Można to porównać do działania żywego systemu obronnego:
+</p>
+
+<ul>
+    <li>flagi na wieżach poruszają się jakby reagowały na wiatr i czas</li>
+    <li>zbrojownia ukrywa swoje sekrety, ujawniając je tylko wtajemniczonym</li>
+    <li>mury zmieniają swój układ, gdy zamek przenosi się na mniejsze pergaminy (ekrany)</li>
+</ul>
+
+<p>
+Dzięki połączeniu tych mechanizmów zamek przestaje być statycznym projektem, a zaczyna zachowywać się jak żyjąca struktura, która reaguje na obecność użytkownika i warunki otoczenia.
+</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="stopka-kursu">
+        &copy; Twoje imię i nazwisko. Wszelkie prawa zastrzeżone.
+    </footer>
+
+</body>
+</html>
